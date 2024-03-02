@@ -48,8 +48,8 @@ team_pull_up <- team_pull_up[[1]]
 team_passing <- nba_leaguedashptstats(season = "2023-24", pt_measure_type = "Passing", player_or_team="Team")
 team_passing <- team_passing[[1]]
 
-#team_shot_dashboard <- nba_leaguedashteamptshot(per_mode = "PerGame")
-#team_shot_dashboard <- team_shot_dashboard[[1]]
+team_shot_dashboard <- nba_leaguedashteamptshot(per_mode = "PerGame")
+team_shot_dashboard <- team_shot_dashboard[[1]]
 
 #team_stats_per_game <- nba_leaguedashteamstats(per_mode = "PerGame")
 #team_stats_per_game<- team_stats_per_game[[1]]
