@@ -51,8 +51,8 @@ team_passing <- team_passing[[1]]
 team_shot_dashboard <- nba_leaguedashteamptshot(per_mode = "PerGame")
 team_shot_dashboard <- team_shot_dashboard[[1]]
 
-#team_stats_per_game <- nba_leaguedashteamstats(per_mode = "PerGame")
-#team_stats_per_game<- team_stats_per_game[[1]]
+team_stats_per_game <- nba_leaguedashteamstats(per_mode = "PerGame")
+team_stats_per_game<- team_stats_per_game[[1]]
 
 
 
