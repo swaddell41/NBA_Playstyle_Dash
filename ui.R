@@ -1,3 +1,7 @@
+library(shiny)
+library(plotly)
+
+
 ui <- fluidPage(
     selectInput("dataSelect", "Choose a dataset:", 
                 choices = c("Drives" = "player_drives", 
