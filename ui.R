@@ -38,27 +38,27 @@ ui <- fluidPage(
     # Conditional panels for specific dataset plots
     conditionalPanel(
         condition = "input.dataSelect == 'player_drives'",
-        plotlyOutput("teamDrivePlot")
+        plotly::plotlyOutput("teamDrivePlot")
     ),
     conditionalPanel(
         condition = "input.dataSelect == 'player_catch_shoot'",
-        plotlyOutput("teamCatchShootPlot")
+        plotly::plotlyOutput("teamCatchShootPlot")
     ),
     conditionalPanel(
         condition = "input.dataSelect == 'player_pull_up'",
-        plotlyOutput("teamPullUpPlot")
+        plotly::plotlyOutput("teamPullUpPlot")
     ),
     conditionalPanel(
         condition = "input.dataSelect == 'player_post_touch'",
-        plotlyOutput("teamPostTouchPlot")
+        plotly::plotlyOutput("teamPostTouchPlot")
     ),
     conditionalPanel(
         condition = "input.dataSelect == 'player_elbow_touch'",
-        plotlyOutput("teamElbowTouchPlot")
+        plotly::plotlyOutput("teamElbowTouchPlot")
     ),
     conditionalPanel(
         condition = "input.dataSelect == 'player_paint_touch'",
-        plotlyOutput("teamPaintTouchPlot")
+        plotly::plotlyOutput("teamPaintTouchPlot")
     ),
 
     # Data table
@@ -67,27 +67,27 @@ ui <- fluidPage(
     # Player-specific plots
     conditionalPanel(
         condition = "input.dataSelect == 'player_drives'",
-        plotlyOutput("drivePlot"),
+        plotly::plotlyOutput("drivePlot"),
         plotOutput("barChart")
     ),
     conditionalPanel(
         condition = "input.dataSelect == 'player_post_touch'",
-        plotlyOutput("postTouchPlot")
+        plotly::plotlyOutput("postTouchPlot")
     ),
     conditionalPanel(
         condition = "input.dataSelect == 'player_elbow_touch'",
-        plotlyOutput("elbowTouchPlot")
+        plotly::plotlyOutput("elbowTouchPlot")
     ),
     conditionalPanel(
         condition = "input.dataSelect == 'player_paint_touch'",
-        plotlyOutput("paintTouchPlot")
+        plotly::plotlyOutput("paintTouchPlot")
     ),
     conditionalPanel(
         condition = "input.dataSelect == 'player_catch_shoot'",
-        plotlyOutput("playerCatchShootPlot")
+        plotly::plotlyOutput("playerCatchShootPlot")
     ),
     conditionalPanel(
         condition = "input.dataSelect == 'player_pull_up'",
-        plotlyOutput("playerPullUpPlot")
+        plotly::plotlyOutput("playerPullUpPlot")
     )
 )
