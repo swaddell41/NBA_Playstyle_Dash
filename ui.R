@@ -11,7 +11,13 @@ ui <- fluidPage(
                             "Catch and Shoot" = "player_catch_shoot",
                             "Pull Up Shot" = "player_pull_up")),
     
-    selectInput("teamSelect", "Choose a team:", choices = sort(unique(player_drives$TEAM_ABBREVIATION))),
+  selectInput("teamSelect", "Choose a team:", 
+            choices = c("ATL", "BOS", "BKN", "CHA", "CHI", "CLE", "DAL", 
+                        "DEN", "DET", "GSW", "HOU", "IND", "LAC", "LAL", 
+                        "MEM", "MIA", "MIL", "MIN", "NOP", "NYK", "OKC", 
+                        "ORL", "PHI", "PHX", "POR", "SAC", "SAS", "TOR", 
+                        "UTA", "WAS"))
+
     
     uiOutput("teamLogo"),
 
