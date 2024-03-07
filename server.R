@@ -1,140 +1,54 @@
 server <- function(input, output) {
 
-library(hoopR)
-
-player_drives <- nba_leaguedashptstats(season = "2023-24", pt_measure_type = "Drives")
-player_drives <- player_drives[[1]]
-
-player_post_touch <- nba_leaguedashptstats(season = "2023-24", pt_measure_type = "PostTouch")
-player_post_touch <- player_post_touch[[1]]
-
-player_elbow_touch <- nba_leaguedashptstats(season = "2023-24", pt_measure_type = "ElbowTouch")
-player_elbow_touch <- player_elbow_touch[[1]]
-
-player_paint_touch <- nba_leaguedashptstats(season = "2023-24", pt_measure_type = "PaintTouch")
-player_paint_touch <- player_paint_touch[[1]]
-
-player_catch_shoot <- nba_leaguedashptstats(season = "2023-24", pt_measure_type = "CatchShoot")
-player_catch_shoot <- player_catch_shoot[[1]]
-
-player_pull_up <- nba_leaguedashptstats(season = "2023-24", pt_measure_type = "PullUpShot")
-player_pull_up <- player_pull_up[[1]]
-
-player_passing <- nba_leaguedashptstats(season = "2023-24", pt_measure_type = "Passing")
-player_passing <- player_passing[[1]]
-
-player_shot_dashboard <- nba_leaguedashplayerptshot(per_mode = "PerGame")
-player_shot_dashboard <- player_shot_dashboard[[1]]
 
 
-team_drives <- nba_leaguedashptstats(season = "2023-24", pt_measure_type = "Drives", player_or_team="Team")
-team_drives <- team_drives[[1]]
+library(googleCloudStorageR)
+library(readr)
 
-team_post_touch <- nba_leaguedashptstats(season = "2023-24", pt_measure_type = "PostTouch", player_or_team="Team")
-team_post_touch <- team_post_touch[[1]]
+gcs_auth("NBAdata/GCS_service_account_key/studious-vector-416020-f6ff74e5bdc1.json")
 
-team_elbow_touch <- nba_leaguedashptstats(season = "2023-24", pt_measure_type = "ElbowTouch", player_or_team="Team")
-team_elbow_touch <- team_elbow_touch[[1]]
+# Define the GCS URL of your CSV file
+player_catch_shoot_url <- "gs://nba_dash_data/player_catch_shoot.csv"
+player_drives_url <- "gs://nba_dash_data/player_drives.csv"
+player_elbow_touch_url <- "gs://nba_dash_data/player_elbow_touch.csv"
+player_paint_touch_url <- "gs://nba_dash_data/player_paint_touch.csv"
+player_passing_url <- "gs://nba_dash_data/player_passing.csv"
+player_post_touch_url <- "gs://nba_dash_data/player_post_touch.csv"
+player_pull_up_url <- "gs://nba_dash_data/player_pull_up.csv"
+player_shot_dashboard_url <- "gs://nba_dash_data/player_shot_dashboard.csv"
+team_catch_shoot_url <- "gs://nba_dash_data/team_catch_shoot.csv"
+team_drives_url <- "gs://nba_dash_data/team_drives.csv"
+team_elbow_touch_url <- "gs://nba_dash_data/team_elbow_touch.csv"
+team_info_url <- "gs://nba_dash_data/team_info.csv"
+team_mapping_url <- "gs://nba_dash_data/team_mapping.csv"
+team_paint_touch_url <- "gs://nba_dash_data/team_paint_touch.csv"
+team_passing_url <- "gs://nba_dash_data/team_passing.csv"
+team_post_touch_url <- "gs://nba_dash_data/team_post_touch.csv"
+team_pull_up_url <- "gs://nba_dash_data/team_pull_up.csv"
+team_shot_dashboard_url <- "gs://nba_dash_data/team_shot_dashboard.csv"
+team_stats_per_game_url <- "gs://nba_dash_data/team_stats_per_game.csv"
 
-team_paint_touch <- nba_leaguedashptstats(season = "2023-24", pt_measure_type = "PaintTouch", player_or_team="Team")
-team_paint_touch <- team_paint_touch[[1]]
+# Use gcs_get_object to read the CSV file content
+player_catch_shoot <- gcs_get_object(player_catch_shoot_url)
+player_drives <- gcs_get_object(player_drives_url)
+player_elbow_touch <- gcs_get_object(player_elbow_touch_url)
+player_paint_touch <- gcs_get_object(player_paint_touch_url)
+player_passing <- gcs_get_object(player_passing_url)
+player_post_touch <- gcs_get_object(player_post_touch_url)
+player_pull_up <- gcs_get_object(player_pull_up_url)
+player_shot_dashboard <- gcs_get_object(player_shot_dashboard_url)
+team_catch_shoot <- gcs_get_object(team_catch_shoot_url)
+team_drives <- gcs_get_object(team_drives_url)
+team_elbow_touch <- gcs_get_object(team_elbow_touch_url)
+team_info <- gcs_get_object(team_info_url)
+team_mapping <- gcs_get_object(team_mapping_url)
+team_paint_touch <- gcs_get_object(team_paint_touch_url)
+team_passing <- gcs_get_object(team_passing_url)
+team_post_touch <- gcs_get_object(team_post_touch_url)
+team_pull_up <- gcs_get_object(team_pull_up_url)
+team_shot_dashboard <- gcs_get_object(team_shot_dashboard_url)
+team_stats_per_game <- gcs_get_object(team_stats_per_game_url)
 
-team_catch_shoot <- nba_leaguedashptstats(season = "2023-24", pt_measure_type = "CatchShoot", player_or_team="Team")
-team_catch_shoot <- team_catch_shoot[[1]]
-
-team_pull_up <- nba_leaguedashptstats(season = "2023-24", pt_measure_type = "PullUpShot", player_or_team="Team")
-team_pull_up <- team_pull_up[[1]]
-
-team_passing <- nba_leaguedashptstats(season = "2023-24", pt_measure_type = "Passing", player_or_team="Team")
-team_passing <- team_passing[[1]]
-
-team_shot_dashboard <- nba_leaguedashteamptshot(per_mode = "PerGame")
-team_shot_dashboard <- team_shot_dashboard[[1]]
-
-team_stats_per_game <- nba_leaguedashteamstats(per_mode = "PerGame")
-team_stats_per_game<- team_stats_per_game[[1]]
-
-
-
-convert_columns_to_numeric <- function(df) {
-    df[, 5:ncol(df)] <- lapply(df[, 5:ncol(df)], function(x) as.numeric(as.character(x)))
-    return(df)
-}
-
-# Apply this function to each of your data frames
-player_drives <- convert_columns_to_numeric(player_drives)
-player_post_touch <- convert_columns_to_numeric(player_post_touch)
-player_elbow_touch <- convert_columns_to_numeric(player_elbow_touch)
-player_paint_touch <- convert_columns_to_numeric(player_paint_touch)
-player_catch_shoot <- convert_columns_to_numeric(player_catch_shoot)
-player_pull_up <- convert_columns_to_numeric(player_pull_up)
-player_passing <- convert_columns_to_numeric(player_passing)
-player_shot_dashboard <- convert_columns_to_numeric(player_shot_dashboard)
-
-team_drives <- convert_columns_to_numeric(team_drives)
-team_post_touch <- convert_columns_to_numeric(team_post_touch)
-team_elbow_touch <- convert_columns_to_numeric(team_elbow_touch)
-team_paint_touch <- convert_columns_to_numeric(team_paint_touch)
-team_catch_shoot <- convert_columns_to_numeric(team_catch_shoot)
-team_pull_up <- convert_columns_to_numeric(team_pull_up)
-team_passing <- convert_columns_to_numeric(team_passing)
-team_shot_dashboard <- convert_columns_to_numeric(team_shot_dashboard)
-team_stats_per_game <- convert_columns_to_numeric(team_stats_per_game)
-team_info <- espn_nba_teams()
-
-# Find abbreviations in team_info not in team_paint_touch
-difference1 <- setdiff(team_info$abbreviation, team_paint_touch$TEAM_ABBREVIATION)
-
-# Find abbreviations in team_paint_touch not in team_info
-difference2 <- setdiff(team_paint_touch$TEAM_ABBREVIATION, team_info$abbreviation)
-
-# Combine the differences
-all_differences <- union(difference1, difference2)
-
-
-mapping <- data.frame(
-    old = difference1,
-    new = difference2  # Corresponding values from difference2
-)
-
-
-for (i in 1:nrow(mapping)) {
-    team_info$abbreviation[team_info$abbreviation == mapping$old[i]] <- mapping$new[i]
-}
-
-
-
-
-# Example mapping
-team_mapping <- data.frame(
-  TEAM_ABBREVIATION = team_info$abbreviation,
-  TEAM_NAME = team_info$display_name
-)
-
-
-library(dplyr)
-
-team_stats_per_game <- team_stats_per_game %>%
-  left_join(team_mapping, by = "TEAM_NAME")
-
-
-team_catch_shoot$PercentageOfTotal = (team_catch_shoot$CATCH_SHOOT_PTS / team_stats_per_game$PTS[match(team_catch_shoot$TEAM_NAME, team_stats_per_game$TEAM_NAME)]) * 100
-team_drives$PercentageOfTotal = (team_drives$DRIVE_PTS / team_stats_per_game$PTS[match(team_drives$TEAM_NAME, team_stats_per_game$TEAM_NAME)]) * 100
-team_pull_up$PercentageOfTotal = (team_pull_up$PULL_UP_PTS / team_stats_per_game$PTS[match(team_pull_up$TEAM_NAME, team_stats_per_game$TEAM_NAME)]) * 100
-
-
-
-#player_drives
-#player_post_touch
-#player_elbow_touch
-#player_paint_touch
-#player_catch_shoot
-#player_pull_up
-
-
-#(player_drives$DRIVE_PTS+(player_drives$DRIVE_AST*(player_passing$AST_POINTS_CREATED/player_passing$AST)))/player_drives$DRIVES
-
-#(team_drives$DRIVE_PTS+(team_drives$DRIVE_AST*(team_passing$AST_POINTS_CREATED/team_passing$AST)))/team_drives$DRIVES
 
 library(shiny)
 library(plotly)
