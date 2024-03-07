@@ -16,7 +16,7 @@ ui <- fluidPage(
                         "DEN", "DET", "GSW", "HOU", "IND", "LAC", "LAL", 
                         "MEM", "MIA", "MIL", "MIN", "NOP", "NYK", "OKC", 
                         "ORL", "PHI", "PHX", "POR", "SAC", "SAS", "TOR", 
-                        "UTA", "WAS"))
+                        "UTA", "WAS")),
 
     
     uiOutput("teamLogo"),
