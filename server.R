@@ -5,7 +5,7 @@ server <- function(input, output) {
 library(googleCloudStorageR)
 library(readr)
 
-gcs_auth("/NBAdata/GCS_service_account_key/studious-vector-416020-f6ff74e5bdc1.json")
+gcs_auth("NBAdata/GCS_service_account_key/studious-vector-416020-f6ff74e5bdc1.json")
 
 # Define the GCS URL of your CSV file
 player_catch_shoot_url <- "gs://nba_dash_data/player_catch_shoot.csv"
